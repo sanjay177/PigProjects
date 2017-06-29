@@ -1,0 +1,12 @@
+Sanjay,1000
+Kapil,2000
+Vikram,1000
+Kul,2000
+Sanjay,200
+Kapil,500
+Kul,1000
+Kul,500
+Sanjay,2000
+Kapil,200
+Vikram,1500
+Manoj,1000
