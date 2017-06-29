@@ -1,0 +1,17 @@
+--GROUP Demo
+-- Load Data from Customer Purchase Text file with ',' as separator
+load_data = load 'user/pigTest/customerPurchases.txt' USING PigStorage(',') as (name:chararray,purchases:int);
+-- Group the data loaded from text file by name
+grouped = GROUP load_data by name;
+
+-- Generate total purchase for each customer
+totalPurchases = FOREACH grouped GENERATE group,SUM(load_data.purchases);
+
+
+--JOIN Demo
+-- Load data for another text file which have zip codes for those users
+load_zipCode = load 'user/pigTest/customerZipCode.txt' USING PigStorage(',') as (customerName:chararray,zip:int);
+-- create join between totalPurchases and load_zipCode by column 'name' and 'customerName' from both files
+tableJoin = join totalPurchases by group , load_zipCode by customerName;
+--Display Final Result
+dump tableJoin;
